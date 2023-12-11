@@ -84,17 +84,17 @@ const AddNewPost = () => {
 
   const handleTagChange = (e) => {
     const { value, checked } = e.target;
-
+    console.log(value, checked);
     setFormData((prevFormData) => {
       if (checked) {
         return {
           ...prevFormData,
-          tags: [...prevFormData.tags, value],
+          tags: [...prevFormData.tags, parseInt(value)],
         };
       } else {
         return {
           ...prevFormData,
-          tags: prevFormData.tags.filter((tagId) => tagId !== value),
+          tags: prevFormData.tags.filter((tagId) => tagId !== parseInt(value)),
         };
       }
     });
@@ -124,7 +124,7 @@ const AddNewPost = () => {
               name="title"
               value={formData.title}
               onChange={handleInputChange}
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Insert the title of your post"
               required
             />
@@ -163,7 +163,7 @@ const AddNewPost = () => {
               name="image"
               value={formData.image}
               onChange={handleInputChange}
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Insert the URL of the image"
             />
           </div>
@@ -208,7 +208,7 @@ const AddNewPost = () => {
                   name="tags"
                   value={tag.id}
                   checked={formData.tags.includes(tag.id)}
-                  onChange={() => handleTagChange(tag.id)}
+                  onChange={handleTagChange}
                   className="block "
                 />
                 <label htmlFor={tag.id} className="text-sm">
